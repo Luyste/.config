@@ -1,0 +1,45 @@
+[
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "shift-k": "editor::Hover",
+      "shift-r": "editor::Rename",
+      "space t d": "diagnostics::Deploy",
+      "space s f": "file_finder::Toggle",
+      "space s p": "pane::DeploySearch",
+      "space space": "tab_switcher::Toggle",
+      "space s s": "outline::Toggle",
+      "space g D": "editor::GoToDefinitionSplit",
+      "ctrl-/": "editor::ToggleComments",
+      "space t r": "editor::FindAllReferences",
+      "ctrl-shift-k": "editor::AddSelectionAbove", // Insert Cursor Above
+      "ctrl-shift-j": "editor::AddSelectionBelow" // Insert Cursor Below
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown"
+    }
+  },
+  {
+    "context": "Picker || menu",
+    "bindings": {
+      "k": "menu::SelectPrev",
+      "j": "menu::SelectNext",
+      "space": "menu::Confirm"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-q": [
+        "vim::PushOperator",
+        {
+          "AddSurrounds": ""
+        }
+      ]
+    }
+  }
+]
