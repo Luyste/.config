@@ -7,13 +7,17 @@
       "space t d": "diagnostics::Deploy",
       "space s f": "file_finder::Toggle",
       "space s p": "pane::DeploySearch",
+      "space s d": "project_panel::NewSearchInDirectory",
       "space space": "tab_switcher::Toggle",
       "space s s": "outline::Toggle",
       "space g D": "editor::GoToDefinitionSplit",
       "ctrl-/": "editor::ToggleComments",
-      "space t r": "editor::FindAllReferences",
+      "space s r": "editor::FindAllReferences",
       "ctrl-shift-k": "editor::AddSelectionAbove", // Insert Cursor Above
-      "ctrl-shift-j": "editor::AddSelectionBelow" // Insert Cursor Below
+      "ctrl-shift-j": "editor::AddSelectionBelow", // Insert Cursor Below
+      "ctrl-.": "zed::ToggleFullScreen",
+      "ctrl-r": "task::Spawn",
+      "space l g": ["task::Spawn", { "task_name": "open lazygit" }]
     }
   },
   {
@@ -26,20 +30,115 @@
   {
     "context": "Picker || menu",
     "bindings": {
-      "k": "menu::SelectPrev",
-      "j": "menu::SelectNext",
+      "shift-k": "menu::SelectPrev",
+      "shift-j": "menu::SelectNext",
       "space": "menu::Confirm"
     }
   },
   {
-    "context": "vim_mode == visual",
+    "context": "Workspace",
     "bindings": {
-      "shift-q": [
-        "vim::PushOperator",
-        {
-          "AddSurrounds": ""
-        }
-      ]
+      "space l g": ["task::Spawn", { "task_name": "open lazygit" }]
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-r": "task::Spawn"
+    }
+  },
+  {
+    "context": "ProjectPanel || Terminal || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    "bindings": {
+      // window related commands (ctrl-w X)
+      // custom keybinds
+      "ctrl-m": ["project_panel::Toggle"],
+      // defaults
+      "ctrl-w left": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w right": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w up": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w down": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-w ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-w shift-left": ["workspace::SwapPaneInDirection", "Left"],
+      "ctrl-w shift-right": ["workspace::SwapPaneInDirection", "Right"],
+      "ctrl-w shift-up": ["workspace::SwapPaneInDirection", "Up"],
+      "ctrl-w shift-down": ["workspace::SwapPaneInDirection", "Down"],
+      "ctrl-w shift-h": ["workspace::SwapPaneInDirection", "Left"],
+      "ctrl-w shift-l": ["workspace::SwapPaneInDirection", "Right"],
+      "ctrl-w shift-k": ["workspace::SwapPaneInDirection", "Up"],
+      "ctrl-w shift-j": ["workspace::SwapPaneInDirection", "Down"],
+      "ctrl-w >": ["vim::ResizePane", "Widen"],
+      "ctrl-w <": ["vim::ResizePane", "Narrow"],
+      "ctrl-w -": ["vim::ResizePane", "Shorten"],
+      "ctrl-w +": ["vim::ResizePane", "Lengthen"],
+      "ctrl-w _": "vim::MaximizePane",
+      "ctrl-w =": "vim::ResetPaneSizes",
+      "ctrl-w g t": "pane::ActivateNextItem",
+      "ctrl-w ctrl-g t": "pane::ActivateNextItem",
+      "ctrl-w g shift-t": "pane::ActivatePrevItem",
+      "ctrl-w ctrl-g shift-t": "pane::ActivatePrevItem",
+      "ctrl-w w": "workspace::ActivateNextPane",
+      "ctrl-w ctrl-w": "workspace::ActivateNextPane",
+      "ctrl-w p": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-p": "workspace::ActivatePreviousPane",
+      "ctrl-w shift-w": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-shift-w": "workspace::ActivatePreviousPane",
+      "ctrl-w v": "pane::SplitVertical",
+      "ctrl-w ctrl-v": "pane::SplitVertical",
+      "ctrl-w s": "pane::SplitHorizontal",
+      "ctrl-w shift-s": "pane::SplitHorizontal",
+      "ctrl-w ctrl-s": "pane::SplitHorizontal",
+      "ctrl-w c": "pane::CloseAllItems",
+      "ctrl-w ctrl-c": "pane::CloseAllItems",
+      "ctrl-w q": "pane::CloseAllItems",
+      "ctrl-w ctrl-q": "pane::CloseAllItems",
+      "ctrl-w o": "workspace::CloseInactiveTabsAndPanes",
+      "ctrl-w ctrl-o": "workspace::CloseInactiveTabsAndPanes",
+      "ctrl-w n": "workspace::NewFileSplitHorizontal",
+      "ctrl-w ctrl-n": "workspace::NewFileSplitHorizontal"
+    }
+  },
+  {
+    // netrw compatibility
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      // defaults
+      ":": "command_palette::Toggle",
+      "%": "project_panel::NewFile",
+      "/": "project_panel::NewSearchInDirectory",
+      "d": "project_panel::NewDirectory",
+      "enter": "project_panel::OpenPermanent",
+      "escape": "project_panel::ToggleFocus",
+      "h": "project_panel::CollapseSelectedEntry",
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrev",
+      "l": "project_panel::ExpandSelectedEntry",
+      "o": "project_panel::OpenPermanent",
+      "shift-o": "project_panel::Open",
+      "shift-d": "project_panel::Delete",
+      "shift-r": "project_panel::Rename",
+      "t": "project_panel::OpenPermanent",
+      "v": "project_panel::OpenPermanent",
+      "p": "project_panel::Open",
+      "x": "project_panel::RevealInFileManager",
+      "s": "project_panel::OpenWithSystem",
+      "] c": "project_panel::SelectNextGitEntry",
+      "[ c": "project_panel::SelectPrevGitEntry",
+      "] d": "project_panel::SelectNextDiagnostic",
+      "[ d": "project_panel::SelectPrevDiagnostic",
+      "}": "project_panel::SelectNextDirectory",
+      "{": "project_panel::SelectPrevDirectory",
+      "shift-g": "menu::SelectLast",
+      "g g": "menu::SelectFirst",
+      "-": "project_panel::SelectParent",
+      "ctrl-6": "pane::AlternateFile"
     }
   }
 ]

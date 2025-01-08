@@ -1,0 +1,33 @@
+{
+  "Log to the console": {
+    "prefix": "clog",
+    "body": ["console.log($1);", "$0"],
+    "description": "Log to the console"
+  },
+  "Acceptance scoped switch statement": {
+    "prefix": "asw",
+    "body": [
+      "const validateForSalesChannel: BusinessRuleHandler<RulesInput> = (\ninput,\nctx,\n) => {\nswitch (ctx.scope) {\ncase SalesChannel.MandatedBroker:\ncase\nSalesChannel.Provincial:\r\nvalidateForBusinessProcess(input, ctx);\nbreak;\n}\n};"
+    ],
+    "description": "Log warning to the console"
+  },
+  "Business scoped switch statement": {
+    "prefix": "bsw",
+    "body": [
+      "const validateForBusinessProcess: BusinessRuleHandler<RulesInput> = (\ninput,\nctx,\n) => {\nswitch (ctx.businessProcess) {\ncase BusinessProcess.Quote:\ncase BusinessProcess.Request:\r\nvalidateAgeOfPolicyHolder(input, ctx);\nbreak;\ncase BusinessProcess.Change:\ncase BusinessProcess.Renewal:\nbreak;\n}\n};"
+    ],
+    "description": "Log warning to the console"
+  },
+  "Import Acceptance and Business scopes": {
+    "prefix": "abi",
+    "body": ["import { SalesChannel, BusinessProcess } from '../../../types';"],
+    "description": "Log warning to the console"
+  },
+  "Scoped test cases": {
+    "prefix": "stst",
+    "body": [
+      "describe(__filename, () => {\r\ndescribe('Mandated Brokers - Quote', () => {\r\nconst ctx: TestContext = {\r\nscope: SalesChannel.MandatedBroker,\nbusinessProcess: BusinessProcess.Quote,\n};\n});\n\ndescribe('Mandated Brokers - Change', () => {\r\nconst ctx: TestContext = {\r\nscope: SalesChannel.MandatedBroker,\nbusinessProcess: BusinessProcess.Change,\n};\n});\n\ndescribe('Mandated Brokers - Renewal', () => {\r\nconst ctx: TestContext = {\r\nscope: SalesChannel.MandatedBroker,\nbusinessProcess: BusinessProcess.Renewal,\n};\n});\n\ndescribe('Mandated Brokers - Request', () => {\nconst ctx: TestContext = {\r\nscope: SalesChannel.MandatedBroker,\nbusinessProcess: BusinessProcess.Request,\n};\n});\n\ndescribe('Provincial - Quote', () => {\r\nconst ctx: TestContext = {\r\nscope: SalesChannel.Provincial,\nbusinessProcess: BusinessProcess.Quote,\n};\n});\n\ndescribe('Provincial - Renewal', () => {\r\nconst ctx: TestContext = {\r\nscope: SalesChannel.Provincial,\nbusinessProcess: BusinessProcess.Renewal,\n};\n});\n\ndescribe('Provincial - Change', () => {\r\nconst ctx: TestContext = {\r\nscope: SalesChannel.Provincial,\nbusinessProcess: BusinessProcess.Change,\n};\n});\n\ndescribe('Provincial - Request', () => {\r\nconst ctx: TestContext = {\r\nscope: SalesChannel.Provincial,\nbusinessProcess: BusinessProcess.Request,\n};\n});\n});"
+    ],
+    "description": "Log warning to the console"
+  }
+}

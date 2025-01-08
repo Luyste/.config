@@ -1,0 +1,34 @@
+[
+  {
+    "label": "test: acceptance rules",
+    "command": "pnpm nx run property-policy-api-acceptance:test",
+    "reveal": "always",
+    "reveal_target": "center",
+    "hide": "never",
+    "tags": ["test-rules"]
+  },
+  {
+    "label": "test: api",
+    "command": "pnpm nx run property-policy-api:test",
+    "reveal": "always",
+    "reveal_target": "center",
+    "hide": "never",
+    "tags": ["test-api"]
+  },
+  {
+    "label": "test: e2e",
+    "command": "pnpm nx run property-policy-api:e2e",
+    "reveal": "always",
+    "reveal_target": "center",
+    "hide": "never",
+    "tags": ["test-e2e"]
+  },
+  {
+    "label": "open lazygit",
+    "command": "lazygit",
+    "reveal": "always",
+    "reveal_target": "center",
+    "hide": "never",
+    "tags": ["lazygit"]
+  }
+]

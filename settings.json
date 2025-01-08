@@ -1,15 +1,37 @@
 {
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4"
+    },
+    "version": "2"
+  },
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true
   },
+  "ui_font_family": "Zed Plex Mono",
   "ui_font_size": 16,
-  "buffer_font_size": 20,
-  "buffer_font_family": "Operator Mono",
-  "buffer_font_weight": 350,
+  "buffer_font_size": 16,
+  "buffer_font_family": "Zed Plex Mono",
+  "buffer_font_weight": 400,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "Github Dark Dimmed"
+  },
+  "file_types": {
+    "TypeSpec": ["tsp"]
+  },
+  "languages": {
+    "TypeSpec": {
+      "name": "TypeSpec",
+      "extensions": [".tsp"],
+      "comment": "//",
+      "indent": {
+        "style": "space",
+        "size": 2
+      }
+    }
   }
 }
